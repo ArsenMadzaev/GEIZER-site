@@ -8,27 +8,24 @@ require 'phpmailer/src/Exception.php';
 $name = $_POST['name'];
 $phone = $_POST['phone'];
 $text = $_POST['interested'];
-
-
-// Составляем POST-запрос, чтобы получить от Google оценку reCAPTCHA v3
-$recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-$recaptcha_secret = '6LdilSopAAAAALmdrogwRWE2obhJS9Put0Fb45dx'; 
-$recaptcha_response = $_POST['g-recaptcha-response'];
+$secret = '6Lev1yopAAAAADT3MOvxClx7w9sZ_E_nGTgHD_68';
  
-// Выполняем POST-запрос
-$recaptcha = file_get_contents($recaptcha_url . '?secret=' . $recaptcha_secret . '&response=' . $recaptcha_response);
-
-$recaptcha = json_decode($recaptcha);
-
-var_dump($recaptcha);
-
-// Принимаем действие на основе возвращаемой оценки
-if ($recaptcha->success == true && $recaptcha->score >= 0.5 && $recaptcha->action == 'contact') {
-   $success_output = true;
+if (!empty($_POST['g-recaptcha-response'])) {
+	$curl = curl_init('https://www.google.com/recaptcha/api/siteverify');
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_POSTFIELDS, 'secret=' . $secret . '&response=' . $_POST['g-recaptcha-response']);
+        $out = curl_exec($curl);
+        curl_close($curl);
+        
+        $out = json_decode($out);
+        if ($out->success == true) {
+            $success_output = true;
+        } 
 } else {
-   // Оценка меньше 0.5 означает подозрительную активность. Возвращаем ошибку
-   $success_output = false;
+    $success_output = false;
 }
+ 
 
 
 if ($success_output) {
