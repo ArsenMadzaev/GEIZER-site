@@ -82,8 +82,7 @@ const app = function () {
                           if (!captchaItems.items[i]) continue;
                           let item = captchaItems.items[i];
                           window.item = grecaptcha.render(item, {
-                            jsUrl: 'https://www.google.com/recaptcha/api.js?render=explicit', // default
-                            sitekey: "6Ldz-ZIgAAAAAO_0GhwGQVhfDl4jtPmLchNWmvvM",
+                            sitekey: "6LdilSopAAAAAEw5gmHc9Z3lYTOWxbqo0-bzczlw",
                             // 'callback': function (response) {
                             //   console.log(response)
                             //   // app.Captcha.WordCallback(response, item)

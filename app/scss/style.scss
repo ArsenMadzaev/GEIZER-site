@@ -790,11 +790,6 @@ svg {
     &__form {
         display: flex;
         flex-direction: column;
-        gap: rem(10px);
-
-        @include media("min", "xxl") {
-            gap: rem(15px);
-        }
 
         & label {
             font-size: rem(15px);
@@ -903,6 +898,10 @@ svg {
         display: flex;
         gap: 5px;
         flex-wrap: wrap;
+
+        &--margin {
+            margin-bottom: rem(5px);
+        }
     }
 
     .input-column {
@@ -916,7 +915,10 @@ svg {
 
     .form-success {
         text-align: center;
-        padding: rem(90px) rem(30px);
+        padding: rem(90px) rem(0px);
+        @include media("min", "md") {
+            padding: rem(90px) rem(30px);
+        }
     }
 
     &__content {
@@ -942,20 +944,30 @@ svg {
         color: #000;
         position: absolute;
         display: block;
-        right: 25px;
-        top: 20px;
+        right: 20px;
+        top: 15px;
         left: auto;
+
+        @include media("min", "sm") {
+            right: 25px;
+            top: 20px;
+        }
     }
 
     & .popup__close:before {
         content: '';
         display: block;
-        width: 30px;
-        height: 30px;
+        width: 20px;
+        height: 20px;
         background-image: url('data:image/svg+xml,<svg width="32" height="32" viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M0.999902 30.9991L30.999 1" stroke="black" stroke-width="1.5" stroke-linecap="round"/><path d="M0.999904 1.00094L30.999 31" stroke="black" stroke-width="1.5" stroke-linecap="round"/></svg>');
         background-repeat: no-repeat;
         background-size: contain;
         background-position: center;
+
+        @include media("min", "sm") {
+            width: 30px;
+            height: 30px;
+        }
     }
 
 }
