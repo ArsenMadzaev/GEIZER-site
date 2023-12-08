@@ -914,6 +914,11 @@ svg {
         }
     }
 
+    .form-success {
+        text-align: center;
+        padding: rem(90px) rem(30px);
+    }
+
     &__content {
         position: absolute;
         width: 100%;

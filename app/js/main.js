@@ -169,6 +169,7 @@ const app = function () {
                 let inputsForm = form.querySelectorAll('input:not([type="hidden"]):not([type="checkbox"])');
                 let areaText = form.querySelector('textarea');
                 let checkbox = form.querySelector('input[type="checkbox"]');
+                let formWrapper = form.parentElement;
 
                 [].forEach.call(document.querySelectorAll('.tel'), function (input) {
                     let keyCode;
@@ -251,8 +252,8 @@ const app = function () {
                                 
                                 if (data.status) {
                                     form.querySelector('.g-recaptcha') ? form.querySelector('.g-recaptcha').parentElement.remove() : '';
-                                    popup.style.top = '225px';
-                                    window.scrollTo({top: 0, behavior: 'smooth'});
+                                    form_result.innerHTML = data.text;
+                                    formWrapper.innerHTML = '<div class="form-success"><h3>Спасибо за заявку!</h3><br><p>Мы свяжемся с вами в ближайшее время<p></div>'
                                 }
                                 if (!data.status) {
                                     form_result.innerHTML = data.text;
