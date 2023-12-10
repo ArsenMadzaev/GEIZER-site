@@ -186,6 +186,11 @@ svg {
 
 //header
 .header {
+    position: fixed;
+    background-color: white;
+    width: 100%;
+    z-index: 99;
+
     &__wrapper {
         min-height: rem(60px);
         display: flex;
@@ -308,6 +313,11 @@ svg {
 }
 
 .main {
+    margin-top: 60px;
+    @include media("min", "lg") {
+        margin-top: 117px;
+    }
+
     .main-banner {
         background: linear-gradient(85.56deg, #C51883 18.89%, #912D99 66.37%);
         animation: gradient 10s infinite linear; 
