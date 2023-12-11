@@ -203,15 +203,17 @@ svg {
     }
 
     &__logo {
-        width: rem(137px);
-    
+        // width: rem(137px);
+        width: rem(90px);
+
         @include media("min", "lg") {
-            width: rem(200px);
+            // width: rem(200px);
+            width: rem(120px);
             margin-bottom: 22px;
         }
 
         @include media("min", "xxl") {
-            width: rem(235px);
+            width: rem(154px);
             margin-bottom: 22px;
         }
     }
@@ -540,8 +542,9 @@ svg {
         }
 
         &__img img {
-            max-width: 100%;
+            max-width: rem(245px);
             border-radius: rem(20px);
+            height: rem(324px);
         }
 
         &__img {
@@ -831,6 +834,14 @@ svg {
 
         @include media("min", "xxl") {
             padding: 20px 60px;
+        }
+
+        &:disabled {
+            background: linear-gradient(180deg, #666666 22%, #999999 66%);
+        }
+
+        &:disabled:hover{
+            background: linear-gradient(180deg, #666666 22%, #999999 66%);
         }
 
         &:hover {

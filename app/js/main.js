@@ -234,6 +234,8 @@ const app = function () {
                                 body: sendData,
                                 });
                                 
+                                button.disabled = true;
+
                                 let data = await response.json();
                                 
                                 //Сброс полей формы
@@ -250,16 +252,18 @@ const app = function () {
                                 : '';
                                 
                                 if (data.status) {
+                                    button.disabled = false;
                                     form.querySelector('.g-recaptcha') ? form.querySelector('.g-recaptcha').parentElement.remove() : '';
                                     form_result.innerHTML = data.text;
                                     formWrapper.innerHTML = '<div class="form-success"><h3>Спасибо за заявку!</h3><br><p>Мы свяжемся с вами в ближайшее время<p></div>'
                                 }
                                 if (!data.status) {
+                                    button.disabled = false;
                                     form_result.innerHTML = data.text;
                                 }
                                     
                             } catch (error) {
-
+                                button.disabled = false;
                                 //Сброс полей формы
                                 for(i=0; i < inputsForm.length; i++) {
                                     inputsForm[i].value = '';
@@ -339,6 +343,18 @@ const mainSlider = new Swiper('.product-slider .swiper', {
       el: '.swiper-pagination',
       clickable: true,
     },
+
+    preloadImages: false,
+    lazy: true,
+    lazy: {
+        loadPrevNext: true, 
+        loadPrevNextAmount: 2,
+    },
+
+    watchSlidesProgress: true,
+
+    watchSlidesVisibility: true,
+
     breakpoints: {
       // Добавьте дополнительные настройки для разных разрешений экрана
       576: {
