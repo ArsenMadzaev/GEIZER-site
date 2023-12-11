@@ -223,6 +223,7 @@ const app = function () {
                 button.addEventListener('click', (e) => {
                     e.preventDefault();
                     if(app.FormControl(button)){
+                        button.disabled = true;
                         (async () => {
                             let sendData = new FormData(form);
                             let form_result = form.querySelector('.form__result');
@@ -233,8 +234,6 @@ const app = function () {
                                 method: 'POST', 
                                 body: sendData,
                                 });
-                                
-                                button.disabled = true;
 
                                 let data = await response.json();
                                 
